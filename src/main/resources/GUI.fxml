@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="root_AnchorPane" fx:id="rootAnchorPane" prefHeight="540.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.honydev.hotsquesttracker.gui.GUIController">
+<style>
+ </style>
+
+   <children>
+      <TabPane fx:id="tabPane" layoutX="6.0" layoutY="7.0" prefHeight="531.0" prefWidth="618.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabRecord" text="Record">
+            <content>
+              <AnchorPane fx:id="tabRecordAnchorPane" minHeight="0.0" minWidth="0.0" style="-fx-background-color: ffffff;">
+                     <children>
+                        <Label fx:id="labelTalent1" layoutX="26.0" layoutY="105.0" text="Talent 1" textAlignment="RIGHT" />
+                        <Label fx:id="labelTalent2" layoutX="26.0" layoutY="139.0" text="Talent 2" textAlignment="RIGHT" />
+                        <Label fx:id="labelTalent3" layoutX="26.0" layoutY="171.0" text="Talent 3" textAlignment="RIGHT" />
+                        <Label fx:id="labelTalent4" layoutX="26.0" layoutY="203.0" text="Talent 4" textAlignment="RIGHT" />
+                        <Label fx:id="labelHeroName" layoutX="43.0" layoutY="58.0" text="Hero" />
+                        <TextField fx:id="textFieldHeroName" layoutX="78.0" layoutY="54.0" />
+                        <TextField fx:id="textFieldTalent1" layoutX="78.0" layoutY="101.0" />
+                        <TextField fx:id="textFieldTalent2" layoutX="78.0" layoutY="135.0" />
+                        <TextField fx:id="textFieldTalent3" layoutX="78.0" layoutY="167.0" />
+                        <TextField fx:id="textFieldTalent4" layoutX="78.0" layoutY="199.0" />
+                        <ToggleButton fx:id="toggleStartStop" layoutX="366.0" layoutY="56.0" mnemonicParsing="false" onAction="#recordSession" prefHeight="47.0" prefWidth="105.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Start" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="buttonShowCSV" layoutX="441.0" layoutY="135.0" mnemonicParsing="false" onAction="#showCSVFolder" prefHeight="21.0" prefWidth="140.0" text="Show results in folder" textAlignment="CENTER" wrapText="true" />
+                        <TextArea fx:id="textFieldConsoleOutput" editable="false" layoutX="36.0" layoutY="301.0" prefHeight="181.0" prefWidth="559.0" />
+                        <TextField fx:id="textFieldMap" layoutX="78.0" layoutY="246.0" />
+                        <Label fx:id="labelMap" layoutX="44.0" layoutY="250.0" text="Map" textAlignment="RIGHT" />
+                        <Button layoutX="267.0" layoutY="135.0" mnemonicParsing="false" text="Save build as favorite" />
+                        <Button layoutX="289.0" layoutY="180.0" mnemonicParsing="false" text="Load favorite" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabStats" text="Stats">
+            <content>
+              <AnchorPane fx:id="tabStatsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+                     <children>
+                        <LineChart fx:id="lineChartTalentProgress" layoutX="14.0" layoutY="85.0">
+                          <xAxis>
+                            <NumberAxis fx:id="lineChartXNumberAxis" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="lineChartYNumberAxis" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <ChoiceBox fx:id="dropDownTalents" layoutX="343.0" layoutY="27.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="dropDownGames" layoutX="85.0" layoutY="27.0" prefWidth="150.0" />
+                        <Label fx:id="labelGameDropDown" layoutX="36.0" layoutY="31.0" text="Game" />
+                        <Label fx:id="labelTalentDropDown" layoutX="303.0" layoutY="31.0" text="Talent" />
+                        <Label fx:id="labelStatsMap" alignment="CENTER" layoutX="72.0" layoutY="61.0" prefHeight="24.0" prefWidth="177.0" text="Map: TBD" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

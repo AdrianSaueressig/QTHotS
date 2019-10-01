@@ -1,0 +1,103 @@
+group 'com.honydev'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+configurations{
+	dependency
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
+    dependency group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.2.2'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+    dependency group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
+
+    // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
+    // DO NOT UPGRADE TO VERSION 9.0.0 !!!
+    dependency group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+    
+    dependency group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    dependency group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    
+    configurations.compile.extendsFrom(configurations.dependency)
+
+}
+
+def getDate() {
+    return new Date().format('dd.MM.yyyy HH:mm:ss')
+}
+
+task copyDependencies(type: Copy) {
+	description 'copies the dependencies to the lib folder'
+	from configurations.dependency   
+	into 'lib'
+}
+
+task packageJar(type: Jar) {
+	description 'Creates a Jar of QTHots'	
+	manifest {
+        attributes 'Implementation-Title': 'QTHots',  
+        	'Implementation-Version': version,
+        	'Build-Time': getDate(),
+        	'Main-Class': 'com.honydev.hotsquesttracker.gui.GUICreator',
+        	'Class-Path': '. ' + configurations.dependency.files.collect { "lib/$it.name" }.join(' ')
+    }
+    
+    with jar
+}
+packageJar.dependsOn copyDependencies
+
+task deleteDistDir(type: Delete){
+	description 'deletes the dist dir'
+	delete 'dist'
+}
+
+task buildProject(type: Copy){
+	description 'builds the whole project in the dist directory'
+	
+	into 'dist'
+	
+	from 'settings.properties'
+	from 'chogall_edited.png'
+	into ('gameData'){
+		from 'gameData'
+	}
+	// copy dependencies
+    into('lib'){
+		from 'lib'
+  	}
+
+	// copy QTHots Jar
+	from ('build/libs/'){
+		include '*.jar'
+	}
+}
+buildProject.dependsOn deleteDistDir
+buildProject.dependsOn packageJar
+
+task zipProject(type: Zip){
+	description 'zips the fully built project into the projects root folder'
+	
+    from 'dist'
+    destinationDir = file('.')
+}
+zipProject.dependsOn buildProject
