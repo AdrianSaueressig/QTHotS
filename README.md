@@ -1,7 +1,9 @@
 # QT-HotS
 **QT**-HotS (pronounced *cute HotS*) is an ocr-based (**o**ptical **c**haracter **r**ecognition) **Q**uest **T**racker application
 written in Java.
-Just run it while you are playing the game to track your ingame talent quest progress.
+Just run it while you are playing Heroes of the Storm to track your ingame talent quest progress.
+
+This was made by two developers. 
 
 ## Requirements
 Java 8-10
