@@ -5,10 +5,15 @@ Just run it while you are playing Heroes of the Storm to track your ingame talen
 
 This was made by two developers. 
 
+## Things I learned developing this
+* Taking Screenshots with Java
+* Using OCR (Tesseract)
+* Working with JavaFX
+
 ## Requirements
 Java 8-10
 
-If you want to use Java11 you have to install JavaFX manually
+If you want to use Java 11 or higher you have to install JavaFX manually
 
 ## Known Problems
 At this point, everything works fine :)
